@@ -6,6 +6,7 @@ import { galleryItems } from './gallery-items';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
+
 export const galleryImages = galleryItems
   .map(
     image =>
@@ -18,11 +19,7 @@ export const galleryImages = galleryItems
   .join('');
 gallery.insertAdjacentHTML('beforeend', galleryImages);
 
-let simplelightbox = new simplelightbox('.gallery', {
+new SimpleLightbox('.gallery', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-console.log(gallery);
-console.log(SimpleLightbox);
-console.log(galleryItems);
