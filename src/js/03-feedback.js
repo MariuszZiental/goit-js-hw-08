@@ -1,5 +1,5 @@
 'use strict';
-import { throttle } from 'lodash';
+import throttle from 'lodash.throttle';
 
 const input = document.querySelector('input');
 const message = document.querySelector('testarea');
