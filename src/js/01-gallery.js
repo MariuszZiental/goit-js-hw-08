@@ -8,16 +8,16 @@ const gallery = document.querySelector('.gallery');
 export const galleryImages = galleryItems
   .map(
     image =>
-      `<li class="gallery__item">
+      `<div class="gallery__item">
       <a class="gallery__link" href="${image.original}">
-        <img class="gallery__image" data-source="${image.original}" src="${image.preview}" alt="${image.description}" />
+        <img class="gallery__image" src="${image.preview}" alt="${image.description}" />
       </a>
-    </li>`
+    </div>`
   )
   .join('');
 gallery.insertAdjacentHTML('beforeend', galleryImages);
 
-let simplelightbox = new simplelightbox('.gallery a', {
+let simplelightbox = new simplelightbox('.gallery', {
   captionsData: 'alt',
   captionDelay: 250,
 });
