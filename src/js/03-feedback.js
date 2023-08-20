@@ -5,7 +5,7 @@ const input = document.querySelector('input');
 const message = document.querySelector('testarea');
 const feedbackForm = document.querySelector('.feedback-form');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-const throttleRun = throttle(saveMessage - 500);
+const throttleRun = throttle(saveMessage);
 
 feedbackForm.addEventListener('input', throttleRun);
 updateOutput();
@@ -23,8 +23,6 @@ function clearMessage(e) {
     add.message = e.target.value;
   }
   feedbackForm.reset();
-  console.log(`email: ${add.email}`);
-  console.log(`message: ${add.message}`);
   localStorage.clear();
 }
 
