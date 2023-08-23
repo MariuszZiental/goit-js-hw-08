@@ -5,16 +5,17 @@ import Player from '@vimeo/player';
 const player = new Player('vimeo-player', {
   id: 236203659,
 });
-const throttleRun = throttle(onPlay, 1000);
 
-player.on('timeupdate', throttleRun);
+const runThrottle = throttle(tempMoment, 1000);
 
-function onPlay(data) {
+player.on('timeupdate', runThrottle);
+
+function tempMoment(data) {
   localStorage.setItem('videoplayer-current-time', data.seconds);
 }
 
-const currentTime = localStorage.getItem('videoplayer-current-time');
+const nowTime = localStorage.getItem('videoplayer-current-time');
 
-if (currentTime !== null) {
-  player.setCurrentTime(parseFloat(currentTime));
+if (nowTime !== null) {
+  player.setCurrentTime(parseFloat(nowTime));
 }

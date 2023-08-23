@@ -2,41 +2,33 @@
 import throttle from 'lodash.throttle';
 
 const input = document.querySelector('input');
-const message = document.querySelector('testarea');
+const msg = document.querySelector('textarea');
 const feedbackForm = document.querySelector('.feedback-form');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-const throttleRun = throttle(saveMessage);
+const throttleRun = throttle(saveMsg);
 
 feedbackForm.addEventListener('input', throttleRun);
 updateOutput();
-feedbackForm.addEventListener('submit', clearMessage);
+feedbackForm.addEventListener('submit', clearMsg);
 
-function clearMessage(e) {
+function clearMsg(e) {
   e.preventDefault();
   const add = {
     email: input.value,
-    message: message.value,
+    msg: msg.value,
   };
-  if (e.target === input) {
-    add.email = e.target.value;
-  } else if (e.target === message) {
-    add.message = e.target.value;
-  }
+  
   feedbackForm.reset();
   localStorage.clear();
 }
 
-function saveMessage(e) {
+function saveMsg(e) {
   e.preventDefault();
   const add = {
     email: input.value,
-    message: message.value,
+    msg: msg.value,
   };
-  if (e.target === input) {
-    add.email = e.target.value;
-  } else if (e.target === message) {
-    add.message = e.target.value;
-  }
+  
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(add));
 }
 
@@ -46,9 +38,9 @@ function updateOutput() {
     const dataFromLSParsed = JSON.parse(dataFromLS);
     if (dataFromLS) {
       input.value = dataFromLSParsed.email || '';
-      message.value = dataFromLSParsed.message || '';
+      msg.value = dataFromLSParsed.msg || '';
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error.msg);
   }
 }
