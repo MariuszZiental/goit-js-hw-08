@@ -17,10 +17,10 @@ export const galleryImages = galleryItems
     </div>`
   )
   .join('');
-  
+
 gallery.insertAdjacentHTML('beforeend', galleryImages);
 
-new SimpleLightbox('.gallery', {
+new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -32,17 +32,5 @@ gallery.addEventListener('click', e => {
   const handleEscapeKey = e => {
     if (e.key === 'Escape') instance.close();
   };
-
-  const instance = simplelightbox.create(
-    `<img src="${e.target.dataset.source}">`,
-    {
-      onShow: () => {
-        document.addEventListener('keydown', handleEscapeKey);
-      },
-      onClose: () => {
-        document.removeEventListener('keydown', handleEscapeKey);
-      },
-    }
-  );
   instance.show();
 });
