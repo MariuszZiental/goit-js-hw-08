@@ -27,7 +27,6 @@ new SimpleLightbox('.gallery a', {
 
 gallery.addEventListener('click', e => {
   e.preventDefault();
-
   if (e.target.nodeName !== 'IMG') return;
   const handleEscapeKey = e => {
     if (e.key === 'Escape') instance.close();
